@@ -1,0 +1,19 @@
+<h2>Bookmarks</h2>
+
+<h1>Add a Movie to <%= @list.name %></h1>
+
+<%= form_with model: [@list, @bookmark] do |f| %>
+  <div class="form-group">
+    <%= f.label :movie_id, "Select a movie" %>
+    <%= f.collection_select :movie_id, Movie.all, :id, :title, prompt: "Choose a movie" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :comment %>
+    <%= f.text_field :comment %>
+  </div>
+
+  <%= f.submit "Add Movie", class: "btn btn-primary" %>
+<% end %>
+
+<p><%= link_to "Back to All List", lists_path %></p>

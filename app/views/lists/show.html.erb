@@ -1,0 +1,37 @@
+
+<div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://cdn.dribbble.com/users/722614/screenshots/19045033/media/bd3c0e5fae07d09a57514623188ed14c.jpg)" >
+  List Details
+</div>
+
+<ul class="list-inline tabs-underlined">
+  <li>
+    <%= link_to 'Add a movie', new_list_bookmark_path(@list) %>
+  </li>
+  <li>
+    <p><%= link_to "Back to All List", lists_path %></p>
+
+  </li>
+
+</ul>
+
+<div class="mt-3">
+
+<h3><%= @list.name %></h3>
+
+<div class="container">
+  <div class="row">
+    <% @list.movies.each do |movie| %>
+      <div class="col-md-3 mb-4">
+        <div class="card">
+          <img src="<%= movie.poster_url %>" class="card-img-top" alt="<%= movie.title %> Poster">
+          <div class="card-body">
+            <h5 class="card-title"><%= movie.title %></h5>
+            <p class="card-text">IMDB Rating: <%= movie.rating %>/10</p>
+            <p class="card-text"><%= movie.overview %></p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+</div>
