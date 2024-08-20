@@ -12,3 +12,29 @@
   border-radius: 5px;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
 }
+
+.card-category1 {
+  background-size: cover;
+  background-position: center;
+  height: 120px;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgb(88, 48, 48);
+  font-size: 24px;
+  font-weight: bold;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  border-radius: 5px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  text-decoration: none;
+  // background-image: url("https://m.media-amazon.com/images/I/812vhNkwpPL._AC_UF894,1000_QL80_.jpg");
+  background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)),
+  url('https://i0.wp.com/lelandswallpaper.com/wp-content/uploads/2019/04/GX37600-Patton-wallcovering-Norwall-Geometrix-Rectangles-Wallpaper-Rose-Gold-Grey.jpg?fit=500%2C500&ssl=1');
+  background-repeat: inherit;
+}
+
+body {
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9)),
+              url('movie_collage.jpg');
+}

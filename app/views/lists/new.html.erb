@@ -1,10 +1,20 @@
+
+
+
+
+<div class="container w-50 mt-5  ">
 <h2>Create a new List</h2>
 
 
 <%= simple_form_for @list do |f| %>
-  <%= f.input :name, label: "List Name" %>
+<div class="d-flex justify-content-end">
+  <%= f.input :name, label: "List Name", input_html: { placeholder: "Enter your list name" } %>
   <%= f.submit "Create List" %>
+</div>
 <% end %>
 
 
-<p><%= link_to "Back to All List", lists_path %></p>
+<p></p>
+</div>
+
+ <button class="btn btn btn-dark d-flex justify-content-end" type="button"><%= link_to "Back to All List", lists_path %></button>

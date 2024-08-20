@@ -1,37 +1,59 @@
 
 <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://cdn.dribbble.com/users/722614/screenshots/19045033/media/bd3c0e5fae07d09a57514623188ed14c.jpg)" >
-  List Details
+  <h3><%= @list.name %></h3>
 </div>
 
-<ul class="list-inline tabs-underlined">
-  <li>
-    <%= link_to 'Add a movie', new_list_bookmark_path(@list) %>
-  </li>
-  <li>
-    <p><%= link_to "Back to All List", lists_path %></p>
+<!-- Navigation Bar -->
+<nav class="navbar navbar-light bg-light d-flex justify-content-around">
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addBookmarkModal">
+    Add a Movie
+  </button>
+  <%= link_to "Back to All Lists", lists_path, class: "btn btn-secondary" %>
+</nav>
 
-  </li>
-
-</ul>
-
-<div class="mt-3">
-
-<h3><%= @list.name %></h3>
-
-<div class="container">
-  <div class="row">
-    <% @list.movies.each do |movie| %>
-      <div class="col-md-3 mb-4">
-        <div class="card">
-          <img src="<%= movie.poster_url %>" class="card-img-top" alt="<%= movie.title %> Poster">
-          <div class="card-body">
-            <h5 class="card-title"><%= movie.title %></h5>
-            <p class="card-text">IMDB Rating: <%= movie.rating %>/10</p>
-            <p class="card-text"><%= movie.overview %></p>
-          </div>
-        </div>
+<div class="modal fade" id="addBookmarkModal" tabindex="-1" aria-labelledby="addBookmarkModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addBookmarkModalLabel">Add a Movie to <%= @list.name %></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-    <% end %>
+      <div class="modal-body">
+        <%= form_with model: [@list, @bookmark], class: "form" do |f| %>
+          <div class="form-group mb-3">
+            <%= f.label :movie_id, "Select a movie", class: "form-label" %>
+            <%= f.collection_select :movie_id, Movie.all, :id, :title, { prompt: "" }, class: "form-select" %>
+          </div>
+
+          <div class="form-group mb-4">
+            <%= f.label :comment, class: "form-label" %>
+            <%= f.text_field :comment, class: "form-control" %>
+          </div>
+
+          <%= f.submit "Add Movie", class: "btn btn-primary" %>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>
+
+
+<div class="mt-3">
+  <div class="container">
+    <div class="row">
+      <% @list.movies.each do |movie| %>
+        <div class="col-md-3 mb-4">
+          <div class="card h-40">
+            <!-- Adjusted the image height to be half of the card's height -->
+            <img src="<%= movie.poster_url %>" class="card-img-top" alt="<%= movie.title %> Poster" style="height: 50%; object-fit: cover; object-position: top;">
+            <div class="card-body d-flex flex-column" style="max-height: 50%; overflow-y: auto;">
+              <h5 class="card-title"><%= movie.title %></h5>
+              <p class="card-text">IMDB Rating: <%= movie.rating %>/10</p>
+              <p class="card-text"><%= movie.overview %></p>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>
